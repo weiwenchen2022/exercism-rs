@@ -1,4 +1,6 @@
-pub fn verse(n: u32) -> String {
+use std::borrow::Cow;
+
+pub fn verse(n: u32) -> Cow<'static, str> {
     // todo!("emit verse {n}")
 
     #[allow(clippy::comparison_chain)]
@@ -11,16 +13,17 @@ pub fn verse(n: u32) -> String {
             n - 1,
             if n - 1 > 1 { "s" } else { "" }
         )
+        .into()
     } else if n == 1 {
         "1 bottle of beer on the wall, 1 bottle of beer.\n\
         Take it down and pass it around, no more bottles of beer on the wall.\n\
         "
-        .to_string()
+        .into()
     } else {
         "No more bottles of beer on the wall, no more bottles of beer.\n\
         Go to the store and buy some more, 99 bottles of beer on the wall.\n\
         "
-        .to_string()
+        .into()
     }
 }
 
